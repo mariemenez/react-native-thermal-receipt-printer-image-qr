@@ -1,19 +1,56 @@
 {
-  "name": "react-native-thermal-receipt-printer-image-qr",
-  "version": "0.1.11",
-  "description": "Fork of react-native-thermal-receipt-printer. A React Native Library to support USB/BLE/Net printer",
-  "main": "dist/index.js",
-  "source": "dist/index.js",
-  "scripts": {
-    "pods": "cd example && pod-install --quiet",
-    "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn && yarn pods",
-    "build": "rimraf ./dist && tsc",
-    "test": "jshint hello.js"
+  "_from": "react-native-thermal-receipt-printer-image-qr",
+  "_id": "react-native-thermal-receipt-printer-image-qr@0.1.9",
+  "_inBundle": false,
+  "_integrity": "sha512-uryIAfkSulnK6iqJaOi4/ZA0dqNgmoyAMPM2cmGYPr0PnfMhAn/VJyGYm71VA0Ywcv+GEHTPMSy64OKkhO9IpA==",
+  "_location": "/react-native-thermal-receipt-printer-image-qr",
+  "_phantomChildren": {
+    "safer-buffer": "2.1.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/thiendangit/react-native-thermal-receipt-printer-image-qr"
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "react-native-thermal-receipt-printer-image-qr",
+    "name": "react-native-thermal-receipt-printer-image-qr",
+    "escapedName": "react-native-thermal-receipt-printer-image-qr",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-thermal-receipt-printer-image-qr/-/react-native-thermal-receipt-printer-image-qr-0.1.9.tgz",
+  "_shasum": "9f51126485e06131d002bd3ce0eeed0f57529b51",
+  "_spec": "react-native-thermal-receipt-printer-image-qr",
+  "_where": "/Users/florent/Bocoloco/bocoloco_osmose",
+  "author": {
+    "name": "thiendangit"
+  },
+  "bugs": {
+    "url": "https://github.com/thiendangit/react-native-thermal-receipt-printer-image-qr/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "buffer": "^5.6.0",
+    "iconv-lite": "^0.6.2",
+    "string_decoder": "^1.3.0"
+  },
+  "deprecated": false,
+  "description": "Fork of react-native-thermal-receipt-printer. A React Native Library to support USB/BLE/Net printer",
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "^14.6.0",
+    "@types/react": "^16.9.46",
+    "@types/react-native": "^0.63.9",
+    "@types/react-test-renderer": "^16.9.3",
+    "jshint": "^2.13.1",
+    "pod-install": "^0.1.10",
+    "react": "^16.13.1",
+    "react-native": "^0.64.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.2"
   },
   "files": [
     "dist",
@@ -21,6 +58,7 @@
     "ios",
     "react-native-thermal-receipt-printer-image-qr.podspec"
   ],
+  "homepage": "https://github.com/thiendangit/react-native-thermal-receipt-printer-image-qr#readme",
   "keywords": [
     "react-native",
     "thermal",
@@ -37,28 +75,23 @@
     "bill",
     "invoice"
   ],
-  "dependencies": {
-    "buffer": "^5.6.0",
-    "iconv-lite": "^0.6.2",
-    "string_decoder": "^1.3.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^26.0.10",
-    "@types/node": "^14.6.0",
-    "@types/react": "^16.9.46",
-    "@types/react-native": "^0.63.9",
-    "@types/react-test-renderer": "^16.9.3",
-    "jshint": "^2.13.1",
-    "pod-install": "^0.1.10",
-    "react": "^16.13.1",
-    "react-native": "^0.64.1",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.0.2"
-  },
+  "license": "ISC",
+  "main": "dist/index.js",
+  "name": "react-native-thermal-receipt-printer-image-qr",
   "peerDependencies": {
     "react-native-ping": "*"
   },
-  "author": "thiendangit",
-  "homepage": "https://github.com/thiendangit/react-native-thermal-receipt-printer-image-qr#readme",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiendangit/react-native-thermal-receipt-printer-image-qr.git"
+  },
+  "scripts": {
+    "bootstrap": "yarn example && yarn && yarn pods",
+    "build": "rimraf ./dist && tsc",
+    "example": "yarn --cwd example",
+    "pods": "cd example && pod-install --quiet",
+    "test": "jshint hello.js"
+  },
+  "source": "dist/index.js",
+  "version": "0.1.9"
 }

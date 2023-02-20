@@ -95,6 +95,7 @@ public class USBPrinterAdapter implements PrinterAdapter {
             } else if (UsbManager.ACTION_USB_ACCESSORY_ATTACHED.equals(action) || UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action)) {
                 synchronized (this) {
                     if (mContext != null) {
+                    Toast.makeText(context, "USB device has been turned ON", Toast.LENGTH_LONG).show();
                         ((ReactApplicationContext) mContext).getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                                 .emit(EVENT_USB_DEVICE_ATTACHED, null);
                     }
@@ -107,7 +108,7 @@ public class USBPrinterAdapter implements PrinterAdapter {
     public void init(ReactApplicationContext reactContext, Callback successCallback, Callback errorCallback) {
         this.mContext = reactContext;
         this.mUSBManager = (UsbManager) this.mContext.getSystemService(Context.USB_SERVICE);
-        this.mPermissionIndent = PendingIntent.getBroadcast(mContext, 0, new Intent(ACTION_USB_PERMISSION), PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        this.mPermissionIndent = PendingIntent.getBroadcast(mContext, 0, new Intent(ACTION_USB_PERMISSION), 0);
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
         filter.addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED);
@@ -150,6 +151,7 @@ public class USBPrinterAdapter implements PrinterAdapter {
         }
 
         USBPrinterDeviceId usbPrinterDeviceId = (USBPrinterDeviceId) printerDeviceId;
+        /*
         if (mUsbDevice != null && mUsbDevice.getVendorId() == usbPrinterDeviceId.getVendorId() && mUsbDevice.getProductId() == usbPrinterDeviceId.getProductId()) {
             Log.i(LOG_TAG, "already selected device, do not need repeat to connect");
             if (!mUSBManager.hasPermission(mUsbDevice)) {
@@ -158,7 +160,7 @@ public class USBPrinterAdapter implements PrinterAdapter {
             }
             successCallback.invoke(new USBPrinterDevice(mUsbDevice).toRNWritableMap());
             return;
-        }
+        }*/
         closeConnectionIfExists();
         if (mUSBManager.getDeviceList().size() == 0) {
             errorCallback.invoke("Device list is empty, can not choose device");
@@ -179,6 +181,8 @@ public class USBPrinterAdapter implements PrinterAdapter {
     }
 
     private boolean openConnection() {
+
+        Log.e(LOG_TAG, "openConnection");
         if (mUsbDevice == null) {
             Log.e(LOG_TAG, "USB Deivce is not initialized");
             return false;
@@ -189,7 +193,7 @@ public class USBPrinterAdapter implements PrinterAdapter {
         }
 
         if (mUsbDeviceConnection != null) {
-            Log.i(LOG_TAG, "USB Connection already connected");
+            Log.e(LOG_TAG, "USB Connection already connected");
             return true;
         }
 
@@ -221,8 +225,8 @@ public class USBPrinterAdapter implements PrinterAdapter {
         return true;
     }
 
-
-    public void printRawData(String data, Callback errorCallback) {
+    
+    public void printRawData(String data, Callback successCallback, Callback errorCallback) {
         final String rawData = data;
         Log.v(LOG_TAG, "start to print raw data " + data);
         boolean isConnected = openConnection();
@@ -236,6 +240,7 @@ public class USBPrinterAdapter implements PrinterAdapter {
                     Log.i(LOG_TAG, "Return Status: b-->" + b);
                 }
             }).start();
+            successCallback.invoke();
         } else {
             String msg = "failed to connected to device";
             Log.v(LOG_TAG, msg);
